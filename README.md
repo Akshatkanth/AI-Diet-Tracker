@@ -75,16 +75,7 @@ AI Based Diet Tracker is an Android app that acts as a virtual diet consultant. 
 4. Download `google-services.json`
 5. Add Firebase dependencies in `build.gradle`
 
-## Download the Project
-1. Open a terminal on your computer.
-2. Clone the GitHub repository:
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   ```
-3. Enter the project folder:
-   ```bash
-   cd <your-repo>
-   ```
+
 
 ## Next Implementation Steps
 - Scaffold Android Studio project (Kotlin, XML)
