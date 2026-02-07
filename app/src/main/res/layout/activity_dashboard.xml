@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dashboard"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BMI: --" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's plan: --" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_view_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View diet plan" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_track_diet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Track today's meals" />
+</LinearLayout>
