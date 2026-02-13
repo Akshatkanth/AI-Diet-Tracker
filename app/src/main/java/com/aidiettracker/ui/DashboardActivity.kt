@@ -18,5 +18,9 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.button_track_diet).setOnClickListener {
             startActivity(Intent(this, DietTrackerActivity::class.java))
         }
+
+        findViewById<MaterialButton>(R.id.button_profile).setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
     }
 }

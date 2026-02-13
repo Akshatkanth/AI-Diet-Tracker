@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="gradient_start">#9802DD</color>
-    <color name="gradient_mid_1">#7B3EE8</color>
-    <color name="gradient_mid_2">#5B57EE</color>
-    <color name="gradient_mid_3">#3A68EF</color>
-    <color name="gradient_end">#1276EB</color>
+    <color name="primary_purple">#6C63FF</color>
+    <color name="secondary_teal">#00C896</color>
+    <color name="accent_blue">#4A90E2</color>
+    <color name="background_soft">#F8F9FA</color>
 
-    <color name="surface_card">#1FFFFFFF</color>
-    <color name="surface_card_strong">#26FFFFFF</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#D9FFFFFF</color>
-    <color name="text_hint">#B3FFFFFF</color>
-    <color name="button_primary">#FFFFFFFF</color>
-    <color name="button_primary_text">#302B63</color>
+    <color name="gradient_start">#6C63FF</color>
+    <color name="gradient_center">#5B7CEF</color>
+    <color name="gradient_end">#4A90E2</color>
+
+    <color name="surface_card">#CCFFFFFF</color>
+    <color name="surface_card_border">#80FFFFFF</color>
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_on_dark">#FFFFFF</color>
+    <color name="button_primary">#6C63FF</color>
+    <color name="button_primary_text">#FFFFFF</color>
 </resources>
