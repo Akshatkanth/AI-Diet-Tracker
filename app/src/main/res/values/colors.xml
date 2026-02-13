@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_purple">#6C63FF</color>
+    <color name="secondary_teal">#00C896</color>
+    <color name="accent_blue">#4A90E2</color>
+    <color name="background_soft">#F8F9FA</color>
+
+    <color name="gradient_start">#6C63FF</color>
+    <color name="gradient_center">#5B7CEF</color>
+    <color name="gradient_end">#4A90E2</color>
+
+    <color name="surface_card">#CCFFFFFF</color>
+    <color name="surface_card_border">#80FFFFFF</color>
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_on_dark">#FFFFFF</color>
+    <color name="button_primary">#6C63FF</color>
+    <color name="button_primary_text">#FFFFFF</color>
+</resources>
