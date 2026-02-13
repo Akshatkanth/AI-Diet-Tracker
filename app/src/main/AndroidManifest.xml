@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="AI Diet Tracker"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AIDietTracker">
+        <activity android:name=".ui.DietTrackerActivity" />
+        <activity android:name=".ui.DietPlanActivity" />
+        <activity android:name=".ui.DashboardActivity" />
+        <activity android:name=".ui.ProfileActivity" />
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
