@@ -14,7 +14,7 @@
         <item name="android:textColor">@color/text_secondary</item>
     </style>
 
-    <style name="Widget.AIDietTracker.Card.Glass" parent="Widget.Material3.MaterialCardView.Elevated">
+    <style name="Widget.AIDietTracker.Card.Glass" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">20dp</item>
         <item name="cardBackgroundColor">@color/surface_card</item>
         <item name="strokeColor">@color/surface_card_border</item>

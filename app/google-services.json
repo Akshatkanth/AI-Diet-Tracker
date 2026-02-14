@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227962460981",
+    "project_id": "ai-diet-tracker-app",
+    "storage_bucket": "ai-diet-tracker-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227962460981:android:8c599e3b9fd66f21b6ca7c",
+        "android_client_info": {
+          "package_name": "com.aidiettracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXCy1YCKJ3gJZXn7-Veqb-YPvVso-IEt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
