@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        startActivity(Intent(this, AuthEntryActivity::class.java))
+        startActivitySmooth(AuthEntryActivity::class.java)
         finish()
     }
 }

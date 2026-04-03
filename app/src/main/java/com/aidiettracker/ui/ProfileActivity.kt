@@ -292,7 +292,7 @@ class ProfileActivity : AppCompatActivity() {
             view.setTextColor(
                 ContextCompat.getColor(
                     this,
-                    if (selected) android.R.color.white else R.color.auth_text_primary
+                    R.color.text_primary
                 )
             )
         }
@@ -373,7 +373,7 @@ class ProfileActivity : AppCompatActivity() {
         LocalProfileStore.save(this, profile)
 
         Toast.makeText(this, "Profile saved. BMI: $bmi", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, DashboardActivity::class.java))
+        startActivitySmooth(DashboardActivity::class.java)
         finish()
     }
 }

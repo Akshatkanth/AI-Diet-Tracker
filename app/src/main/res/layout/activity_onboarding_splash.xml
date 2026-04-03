@@ -14,7 +14,7 @@
         android:includeFontPadding="false"
         android:letterSpacing="0"
         android:text="@string/onboarding_brand_name"
-        android:textColor="@android:color/white"
+        android:textColor="@color/text_primary"
         android:textSize="66sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

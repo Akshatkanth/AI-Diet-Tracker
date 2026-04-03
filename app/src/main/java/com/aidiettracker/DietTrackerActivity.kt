@@ -1,6 +1,7 @@
 package com.aidiettracker
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +12,9 @@ import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +33,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.roundToInt
 
 data class MealEntry(
     val name: String,
@@ -42,6 +46,10 @@ data class MealEntry(
 )
 
 class DietTrackerActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_OPEN_MEAL_ENTRY = "extra_open_meal_entry"
+    }
 
     private val meals = mutableListOf<MealEntry>()
     private var currentProfile: UserProfile? = null
@@ -83,9 +91,22 @@ class DietTrackerActivity : AppCompatActivity() {
     private lateinit var progressWater: ProgressBar
     private lateinit var btnAddWater: MaterialButton
     private lateinit var btnRemoveWater: MaterialButton
+
+    private lateinit var tvSleepDate: TextView
+    private lateinit var tvSleepHours: TextView
+    private lateinit var tvSleepQuality: TextView
+    private lateinit var tvSleepWindow: TextView
+    private lateinit var tvSleepStatus: TextView
+    private lateinit var progressSleep: ProgressBar
+    private lateinit var bedtimePicker: TimePicker
+    private lateinit var wakeTimePicker: TimePicker
+    private lateinit var chipGroupSleepQuality: ChipGroup
+    private lateinit var btnSaveSleep: MaterialButton
+
     private lateinit var btnResetDay: MaterialButton
 
     private val prefs by lazy { getSharedPreferences("diet_tracker_prefs", MODE_PRIVATE) }
+    private val sleepPrefs by lazy { getSharedPreferences("sleep_tracker_prefs", MODE_PRIVATE) }
     private val todayKey get() = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,10 +117,32 @@ class DietTrackerActivity : AppCompatActivity() {
         loadGoalsFromProfile()
         setupDate()
         loadData()
+        setupSleepDate()
+        setupSleepPickers()
+        loadSleepData()
         setupFoodInputs()
         setupListeners()
         buildWaterGlasses()
+        bindNavigation()
         refreshUI()
+    }
+
+    private fun bindNavigation() {
+        findViewById<LinearLayout>(R.id.nav_home).setOnClickListener {
+            startActivity(Intent(this, com.aidiettracker.ui.DashboardActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.nav_view_plan).setOnClickListener {
+            startActivity(Intent(this, com.aidiettracker.ui.DietPlanActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.nav_track_diet).setOnClickListener {
+            findViewById<android.widget.ScrollView>(R.id.diet_tracker_scroll).smoothScrollTo(0, 0)
+        }
+        findViewById<LinearLayout>(R.id.nav_profile).setOnClickListener {
+            startActivity(Intent(this, com.aidiettracker.ui.ProfilePageActivity::class.java))
+        }
+        findViewById<android.widget.FrameLayout>(R.id.nav_quick_actions).setOnClickListener {
+            openMealEntry()
+        }
     }
 
     private fun bindViews() {
@@ -135,6 +178,16 @@ class DietTrackerActivity : AppCompatActivity() {
         btnAddWater = findViewById(R.id.btn_add_water)
         btnRemoveWater = findViewById(R.id.btn_remove_water)
         btnResetDay = findViewById(R.id.btn_reset_day)
+        tvSleepDate = findViewById(R.id.text_sleep_date)
+        tvSleepHours = findViewById(R.id.text_sleep_hours)
+        tvSleepQuality = findViewById(R.id.text_sleep_quality)
+        tvSleepWindow = findViewById(R.id.text_sleep_window)
+        tvSleepStatus = findViewById(R.id.text_sleep_status)
+        progressSleep = findViewById(R.id.progress_sleep)
+        bedtimePicker = findViewById(R.id.picker_bedtime)
+        wakeTimePicker = findViewById(R.id.picker_wake_time)
+        chipGroupSleepQuality = findViewById(R.id.chip_group_sleep_quality)
+        btnSaveSleep = findViewById(R.id.button_save_sleep)
     }
 
     private fun loadGoalsFromProfile() {
@@ -210,6 +263,154 @@ class DietTrackerActivity : AppCompatActivity() {
         tvDate.text = "Today, ${sdf.format(Date())}"
     }
 
+    private fun setupSleepDate() {
+        val sdf = SimpleDateFormat("EEEE, d MMM", Locale.getDefault())
+        tvSleepDate.text = "Tonight, ${sdf.format(Date())}"
+    }
+
+    private fun setupSleepPickers() {
+        bedtimePicker.setIs24HourView(true)
+        wakeTimePicker.setIs24HourView(true)
+        bedtimePicker.setOnTimeChangedListener { _, _, _ -> syncSleepPreview() }
+        wakeTimePicker.setOnTimeChangedListener { _, _, _ -> syncSleepPreview() }
+    }
+
+    private fun openMealEntry() {
+        val scrollView = findViewById<ScrollView>(R.id.diet_tracker_scroll)
+        scrollView.post {
+            val target = findViewById<View>(R.id.layout_quick_add_section)
+            scrollView.smoothScrollTo(0, target.top)
+            etMealName.requestFocus()
+        }
+    }
+
+    private fun loadSleepData() {
+        val bedtime = sleepPrefs.getString("sleep_bedtime_$todayKey", "") ?: ""
+        val wakeTime = sleepPrefs.getString("sleep_wake_$todayKey", "") ?: ""
+        val quality = sleepPrefs.getString("sleep_quality_$todayKey", "") ?: ""
+
+        applyTimeToPicker(bedtimePicker, bedtime, 22, 0)
+        applyTimeToPicker(wakeTimePicker, wakeTime, 6, 0)
+        checkSleepQualityChip(quality)
+        syncSleepPreview()
+    }
+
+    private fun saveSleepData() {
+        val hours = calculateSleepHours()
+        val bedtime = pickerTimeToString(bedtimePicker)
+        val wakeTime = pickerTimeToString(wakeTimePicker)
+        val quality = currentSleepQuality()
+
+        if (hours <= 0) {
+            Toast.makeText(this, "Pick bedtime and wake time first", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        sleepPrefs.edit()
+            .remove("sleep_hours_$todayKey")
+            .putInt("sleep_hours_int_$todayKey", hours)
+            .putString("sleep_bedtime_$todayKey", bedtime)
+            .putString("sleep_wake_$todayKey", wakeTime)
+            .putString("sleep_quality_$todayKey", quality)
+            .apply()
+
+        refreshSleepUi(hours, bedtime, wakeTime, quality)
+        Toast.makeText(this, "Sleep log saved", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun syncSleepPreview() {
+        refreshSleepUi(
+            hours = calculateSleepHours(),
+            bedtime = pickerTimeToString(bedtimePicker),
+            wakeTime = pickerTimeToString(wakeTimePicker),
+            quality = currentSleepQuality()
+        )
+    }
+
+    private fun refreshSleepUi(hours: Int, bedtime: String, wakeTime: String, quality: String) {
+        tvSleepHours.text = if (hours > 0) {
+            "$hours hours"
+        } else {
+            "0 hours"
+        }
+        tvSleepQuality.text = if (quality.isBlank()) {
+            "Quality: Unknown"
+        } else {
+            "Quality: ${quality.replaceFirstChar { it.uppercase() }}"
+        }
+        tvSleepWindow.text = if (bedtime.isBlank() && wakeTime.isBlank()) {
+            "Bedtime - wake time"
+        } else {
+            "${bedtime.ifBlank { "--:--" }} - ${wakeTime.ifBlank { "--:--" }}"
+        }
+
+        val progress = ((hours / 8f) * 100f).toInt().coerceIn(0, 100)
+        progressSleep.progress = progress
+        tvSleepStatus.text = when {
+            hours >= 8 -> "Great sleep. You reached a full night of rest."
+            hours >= 7 -> "Good sleep. You are close to the ideal range."
+            hours > 0 -> "Try to reach 7 to 9 hours for better recovery."
+            else -> "Log your sleep here to see a daily summary."
+        }
+    }
+
+    private fun calculateSleepHours(): Int {
+        val bedtimeMinutes = pickerToMinutes(bedtimePicker)
+        val wakeMinutes = pickerToMinutes(wakeTimePicker)
+        if (bedtimeMinutes == wakeMinutes) return 0
+
+        var totalMinutes = wakeMinutes - bedtimeMinutes
+        if (totalMinutes < 0) {
+            totalMinutes += 24 * 60
+        }
+
+        return (totalMinutes / 60.0).roundToInt().coerceIn(0, 24)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyTimeToPicker(timePicker: TimePicker, timeValue: String, defaultHour: Int, defaultMinute: Int) {
+        val parts = timeValue.split(":")
+        val hour = parts.getOrNull(0)?.toIntOrNull() ?: defaultHour
+        val minute = parts.getOrNull(1)?.toIntOrNull() ?: defaultMinute
+        timePicker.currentHour = hour.coerceIn(0, 23)
+        timePicker.currentMinute = minute.coerceIn(0, 59)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun pickerToMinutes(timePicker: TimePicker): Int {
+        val hour = timePicker.currentHour ?: 0
+        val minute = timePicker.currentMinute ?: 0
+        return hour * 60 + minute
+    }
+
+    @Suppress("DEPRECATION")
+    private fun pickerTimeToString(timePicker: TimePicker): String {
+        val hour = timePicker.currentHour ?: 0
+        val minute = timePicker.currentMinute ?: 0
+        return String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
+    }
+
+    private fun currentSleepQuality(): String {
+        return when (chipGroupSleepQuality.checkedChipId) {
+            R.id.chip_quality_poor -> "poor"
+            R.id.chip_quality_good -> "good"
+            R.id.chip_quality_okay -> "okay"
+            else -> ""
+        }
+    }
+
+    private fun checkSleepQualityChip(quality: String) {
+        val chipId = when (quality.lowercase(Locale.getDefault())) {
+            "poor" -> R.id.chip_quality_poor
+            "good" -> R.id.chip_quality_good
+            "okay" -> R.id.chip_quality_okay
+            else -> View.NO_ID
+        }
+        if (chipId != View.NO_ID) {
+            chipGroupSleepQuality.check(chipId)
+        }
+    }
+
     private fun setupListeners() {
         btnAddMeal.setOnClickListener { addMeal() }
         btnAddWater.setOnClickListener {
@@ -227,6 +428,7 @@ class DietTrackerActivity : AppCompatActivity() {
             }
         }
         btnResetDay.setOnClickListener { showResetDialog() }
+        btnSaveSleep.setOnClickListener { saveSleepData() }
     }
 
     private fun getMealType(): String {
@@ -418,11 +620,26 @@ class DietTrackerActivity : AppCompatActivity() {
             .setPositiveButton("Reset") { _, _ ->
                 meals.clear()
                 waterCount = 0
+                clearSleepData()
                 saveData()
                 refreshUI()
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun clearSleepData() {
+        sleepPrefs.edit()
+            .remove("sleep_hours_int_$todayKey")
+            .remove("sleep_hours_$todayKey")
+            .remove("sleep_bedtime_$todayKey")
+            .remove("sleep_wake_$todayKey")
+            .remove("sleep_quality_$todayKey")
+            .apply()
+        applyTimeToPicker(bedtimePicker, "22:00", 22, 0)
+        applyTimeToPicker(wakeTimePicker, "06:00", 6, 0)
+        chipGroupSleepQuality.clearCheck()
+        syncSleepPreview()
     }
 
     private fun saveData() {
@@ -442,6 +659,7 @@ class DietTrackerActivity : AppCompatActivity() {
         prefs.edit()
             .putString("meals_$todayKey", jsonArray.toString())
             .putInt("water_$todayKey", waterCount)
+            .putInt("water_glasses_$todayKey", waterCount)
             .apply()
 
         val lastLogDate = prefs.getString("last_log_date", "")
@@ -464,7 +682,7 @@ class DietTrackerActivity : AppCompatActivity() {
 
     private fun loadData() {
         val mealsJson = prefs.getString("meals_$todayKey", "[]") ?: "[]"
-        waterCount = prefs.getInt("water_$todayKey", 0)
+        waterCount = prefs.getInt("water_$todayKey", prefs.getInt("water_glasses_$todayKey", 0))
 
         val jsonArray = JSONArray(mealsJson)
         for (i in 0 until jsonArray.length()) {

@@ -34,7 +34,9 @@ object FoodLookupService {
 
     private val localFoods = listOf(
         FoodNutrition("Roti", 297.0, 9.0, 46.0, 7.0, 35.0, listOf("chapati", "phulka", "roti", "roti", "chapatti")),
+        FoodNutrition("Oats", 389.0, 16.9, 66.3, 6.9, 40.0, listOf("oats", "oatmeal", "porridge", "overnight oats")),
         FoodNutrition("Steamed Rice", 130.0, 2.7, 28.0, 0.3, 150.0, listOf("rice", "chawal", "bhaat", "cooked rice")),
+        FoodNutrition("Chicken Rice", 215.0, 12.0, 27.0, 7.0, 220.0, listOf("chicken rice", "hainanese chicken rice", "chicken rice bowl", "murgh chawal")),
         FoodNutrition("Dal Tadka", 120.0, 6.0, 15.0, 3.0, 150.0, listOf("dal", "daal", "dal fry", "lentil curry", "dal tadka")),
         FoodNutrition("Rajma", 140.0, 7.5, 20.0, 3.0, 150.0, listOf("kidney beans curry", "rajma masala", "rajma chawal", "rajma")),
         FoodNutrition("Chole", 160.0, 8.0, 24.0, 4.0, 150.0, listOf("chana masala", "chole masala", "chana", "chole")),

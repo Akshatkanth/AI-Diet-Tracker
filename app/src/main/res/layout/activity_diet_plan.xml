@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:scrollbars="none">
+    android:background="@drawable/bg_diet_page_root"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/diet_plan_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Nourish Mitra"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp"
                 android:fontFamily="sans-serif-bold" />
 
@@ -84,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="DAILY TARGET"
-                        android:textColor="#80FFFFFF"
+                        android:textColor="#333333"
                         android:textSize="11sp"
                         android:letterSpacing="0.15" />
 
@@ -93,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="-- kcal"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="40sp"
                         android:fontFamily="sans-serif-black"
                         android:layout_marginTop="4dp" />
@@ -102,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Recommended calories/day"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="13sp"
                         android:layout_marginTop="2dp" />
                 </LinearLayout>
@@ -142,7 +149,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="22sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -150,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Protein"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="12sp"
                         android:layout_marginTop="2dp" />
 
@@ -174,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="22sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -182,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Carbs"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="12sp"
                         android:layout_marginTop="2dp" />
 
@@ -206,7 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="22sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -214,7 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fat"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="12sp"
                         android:layout_marginTop="2dp" />
 
@@ -251,7 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3 meals"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -308,7 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~450 kcal"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:fontFamily="sans-serif-medium" />
             </LinearLayout><View
@@ -457,7 +464,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~600 kcal"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:fontFamily="sans-serif-medium" />
             </LinearLayout>
@@ -609,7 +616,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~500 kcal"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:fontFamily="sans-serif-medium" />
             </LinearLayout>
@@ -766,7 +773,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="→"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp" />
@@ -776,7 +783,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Tofu / Paneer"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:gravity="end" />
             </LinearLayout>
@@ -803,7 +810,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="→"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp" />
@@ -813,7 +820,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Brown Rice"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:gravity="end" />
             </LinearLayout>
@@ -839,7 +846,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="→"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp" />
@@ -849,7 +856,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Tuna / Cod"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:gravity="end" />
             </LinearLayout>
@@ -901,7 +908,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2L"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-bold" />
         </LinearLayout>
@@ -934,7 +941,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pro Tip"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:fontFamily="sans-serif-bold"
                     android:letterSpacing="0.1" />
@@ -948,4 +955,7 @@
                     android:layout_marginTop="4dp" />
             </LinearLayout>
         </LinearLayout></LinearLayout>
-</ScrollView>
+        </ScrollView>
+
+        <include layout="@layout/layout_bottom_navigation" />
+    </LinearLayout>

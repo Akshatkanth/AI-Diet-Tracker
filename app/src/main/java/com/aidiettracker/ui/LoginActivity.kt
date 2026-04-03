@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        findViewById<View>(R.id.button_back)?.setOnClickListener { finish() }
+        findViewById<View>(R.id.button_back)?.setOnClickListener { finishWithSmoothTransition() }
 
         val emailField = findViewById<EditText>(R.id.edit_email)
         val passwordField = findViewById<EditText>(R.id.edit_password)
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
-                    startActivity(Intent(this, DashboardActivity::class.java))
+                    startActivitySmooth(DashboardActivity::class.java)
                     finish()
                 }
                 .addOnFailureListener { error ->
@@ -63,14 +63,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.button_register).setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivitySmooth(RegisterActivity::class.java)
         }
+
+        findViewById<View>(R.id.button_back)?.attachTapFeedback()
+        findViewById<MaterialButton>(R.id.button_login).attachTapFeedback()
+        findViewById<TextView>(R.id.button_register).attachTapFeedback()
     }
 
     override fun onStart() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser != null) {
-            startActivity(Intent(this, DashboardActivity::class.java))
+            startActivitySmooth(DashboardActivity::class.java)
             finish()
         }
     }

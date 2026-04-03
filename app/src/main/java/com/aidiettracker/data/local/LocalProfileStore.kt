@@ -42,6 +42,12 @@ object LocalProfileStore {
         }
     }
 
+    fun clear(context: Context) {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+            clear()
+        }
+    }
+
     fun load(context: Context): UserProfile? {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val name = prefs.getString(KEY_NAME, "") ?: ""

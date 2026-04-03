@@ -25,9 +25,9 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        findViewById<View>(R.id.button_back)?.setOnClickListener { finish() }
+        findViewById<View>(R.id.button_back)?.setOnClickListener { finishWithSmoothTransition() }
         findViewById<TextView>(R.id.button_login)?.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivitySmooth(LoginActivity::class.java)
             finish()
         }
 
@@ -69,7 +69,7 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    startActivitySmooth(ProfileActivity::class.java)
                     finish()
                 }
                 .addOnFailureListener { e ->
@@ -77,5 +77,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
         }
 
+        findViewById<View>(R.id.button_back)?.attachTapFeedback()
+        findViewById<TextView>(R.id.button_login).attachTapFeedback()
+        findViewById<MaterialButton>(R.id.button_create_account).attachTapFeedback()
     }
 }

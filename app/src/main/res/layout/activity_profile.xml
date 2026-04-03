@@ -99,7 +99,7 @@
                 android:background="@drawable/bg_profile_green_circle"
                 android:gravity="center"
                 android:text="L"
-                android:textColor="@android:color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -231,7 +231,7 @@
             android:backgroundTint="@color/auth_divider"
             android:text="NEXT"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             app:cornerRadius="12dp" />
 

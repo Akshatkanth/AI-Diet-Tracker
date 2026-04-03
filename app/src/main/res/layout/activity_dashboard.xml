@@ -67,7 +67,7 @@
                     android:paddingEnd="14dp"
                     android:paddingBottom="8dp"
                     android:text="Today"
-                    android:textColor="#000000"
+                    android:textColor="#0f100f"
                     android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -126,7 +126,7 @@
                         android:paddingEnd="12dp"
                         android:paddingBottom="6dp"
                         android:text="Calorie goal"
-                        android:textColor="#000000"
+                        android:textColor="#111111"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -153,7 +153,7 @@
                             android:layout_width="196dp"
                             android:layout_height="196dp"
                             android:background="@drawable/circular_progress_bg"
-                            android:max="100"
+                            android:max="1000"
                             android:progress="0"
                             android:progressDrawable="@drawable/circular_progress"
                             android:rotation="-90" />
@@ -187,7 +187,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="0% of goal"
+                                android:text="0.0% of goal"
                                 android:textColor="#000000"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -242,7 +242,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="28sp"
                                 android:textStyle="bold" />
 
@@ -251,7 +251,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:text="GOAL"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -273,7 +273,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#090909"
                                 android:textSize="28sp"
                                 android:textStyle="bold" />
 
@@ -283,7 +283,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:text="STREAK"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#0e0e0e"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -308,7 +308,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0 meals"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -317,7 +317,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:text="logged today"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -334,7 +334,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0 / 8"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -343,7 +343,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:text="glasses"
-                                android:textColor="@color/dashboard_text_primary"
+                                android:textColor="#000000"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -414,16 +414,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
                         android:layout_marginTop="8dp"
-                        android:max="100"
+                        android:max="1000"
                         android:progress="0"
-                        android:progressBackgroundTint="@color/dashboard_progress_track"
-                        android:progressTint="@color/dashboard_progress_calories" />
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#84D9AD" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="14dp"
-                        android:background="@color/dashboard_divider" />
+                        android:background="#1DE2F1E6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -437,7 +437,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Carbs"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -446,7 +446,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0/0g"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -459,14 +459,14 @@
                         android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="0"
-                        android:progressBackgroundTint="@color/dashboard_progress_track"
-                        android:progressTint="@color/dashboard_progress_carbs" />
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#A5D7B6" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="14dp"
-                        android:background="@color/dashboard_divider" />
+                        android:background="#1DE2F1E6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -480,7 +480,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Protein"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -489,7 +489,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0/0g"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -502,14 +502,14 @@
                         android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="0"
-                        android:progressBackgroundTint="@color/dashboard_progress_track"
-                        android:progressTint="@color/dashboard_progress_protein" />
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#7CCFA6" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="14dp"
-                        android:background="@color/dashboard_divider" />
+                        android:background="#1DE2F1E6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -523,7 +523,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Fat"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -532,7 +532,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0/0g"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -545,14 +545,14 @@
                         android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="0"
-                        android:progressBackgroundTint="@color/dashboard_progress_track"
-                        android:progressTint="@color/dashboard_progress_fat" />
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#9BD8C0" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="14dp"
-                        android:background="@color/dashboard_divider" />
+                        android:background="#1DE2F1E6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -566,7 +566,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Water"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -575,7 +575,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0 / 8 glasses"
-                            android:textColor="@color/dashboard_text_primary"
+                            android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -588,8 +588,51 @@
                         android:layout_marginTop="8dp"
                         android:max="100"
                         android:progress="0"
-                        android:progressBackgroundTint="@color/dashboard_progress_track"
-                        android:progressTint="@color/dashboard_progress_water" />
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#A6E2D2" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#1DE2F1E6" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sleep"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_sleep_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                android:text="0 h"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_sleep_circle"
+                        style="@android:style/Widget.Material.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:layout_marginTop="8dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressBackgroundTint="#CCE8E0"
+                        android:progressTint="#8FC8A4" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -845,7 +888,8 @@
                 android:layout_marginTop="4dp"
                 android:text="Diet Plan"
                 android:textColor="#000000"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <FrameLayout
@@ -856,16 +900,14 @@
             android:clickable="true"
             android:focusable="true">
 
-            <TextView
+            <ImageView
                 android:layout_width="58dp"
                 android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_dashboard_quick_action_button"
-                android:gravity="center"
-                android:text="+"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:padding="16dp"
+                android:src="@drawable/ic_add"
+                android:tint="#FFFFFF" />
         </FrameLayout>
 
         <LinearLayout
@@ -890,7 +932,8 @@
                 android:layout_marginTop="4dp"
                 android:text="Track Diet"
                 android:textColor="#000000"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout

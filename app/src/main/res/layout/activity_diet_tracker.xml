@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:scrollbars="none">
+    android:background="@drawable/bg_diet_page_root"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/diet_tracker_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🔥 0 days"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif-bold"
                 android:background="@drawable/bg_glass_card"
@@ -88,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CALORIES TODAY"
-                        android:textColor="#99FFFFFF"
+                        android:textColor="#333333"
                         android:textSize="11sp"
                         android:letterSpacing="0.12" />
 
@@ -105,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="#FFFFFF"
+                            android:textColor="#000000"
                             android:textSize="48sp"
                             android:fontFamily="sans-serif-black" />
 
@@ -114,7 +122,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" / 2000 kcal"
-                            android:textColor="#CCFFFFFF"
+                            android:textColor="#333333"
                             android:textSize="16sp"
                             android:layout_marginBottom="8dp" />
                     </LinearLayout>
@@ -124,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2000 kcal remaining"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -149,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="0%"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center" />
@@ -193,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -201,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Protein"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
 
@@ -234,7 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -242,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Carbs"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
 
@@ -275,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0g"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-bold" />
 
@@ -283,7 +291,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fat"
-                        android:textColor="#CCFFFFFF"
+                        android:textColor="#333333"
                         android:textSize="11sp"
                         android:layout_marginTop="2dp" />
 
@@ -303,6 +311,7 @@
 
         <!-- Quick Add Section -->
         <LinearLayout
+            android:id="@+id/layout_quick_add_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -412,7 +421,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="Popular Rajasthani Foods"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="12sp"
                 android:fontFamily="sans-serif-medium" />
 
@@ -434,7 +443,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Dal Baati Churma"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -445,7 +454,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gatte ki Sabzi"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -456,7 +465,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ker Sangri"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -467,7 +476,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bajre ki Roti"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -478,7 +487,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pyaz Kachori"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -489,7 +498,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mirchi Vada"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -500,7 +509,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Laal Maas"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#4DFF6B00"
                         app:chipStrokeColor="#99FFFFFF"
@@ -528,7 +537,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🌅 Breakfast"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#33FF6B00"
                         app:chipStrokeColor="#66FFFFFF"
@@ -540,7 +549,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="☀️ Lunch"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#33FF6B00"
                         app:chipStrokeColor="#66FFFFFF"
@@ -551,7 +560,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🌙 Dinner"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#33FF6B00"
                         app:chipStrokeColor="#66FFFFFF"
@@ -562,7 +571,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🍎 Snack"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/text_primary"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         app:chipBackgroundColor="#33FF6B00"
                         app:chipStrokeColor="#66FFFFFF"
@@ -582,7 +591,7 @@
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-bold"
                 android:backgroundTint="@color/orange_primary"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 app:cornerRadius="14dp" />
         </LinearLayout>
 
@@ -611,7 +620,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 meals"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -702,7 +711,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 / 8 glasses"
-                    android:textColor="@color/orange_primary"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:fontFamily="sans-serif-medium" />
             </LinearLayout>
@@ -743,7 +752,7 @@
                     android:textAllCaps="false"
                     android:textSize="14sp"
                     android:backgroundTint="@color/orange_primary"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     app:cornerRadius="10dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -764,6 +773,175 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Sleep Tracker Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_glass_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sleep"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-bold" />
+
+            <TextView
+                android:id="@+id/text_sleep_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_sleep_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="0 hours"
+                android:textColor="@color/text_primary"
+                android:textSize="38sp"
+                android:fontFamily="sans-serif-black" />
+
+            <TextView
+                android:id="@+id/text_sleep_quality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Quality: Unknown"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_sleep_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Bedtime - wake time"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <ProgressBar
+                android:id="@+id/progress_sleep"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/progress_bar_bg_white"
+                android:progressDrawable="@drawable/progress_bar_white"
+                android:max="100"
+                android:progress="0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Bedtime"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TimePicker
+                android:id="@+id/picker_bedtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:timePickerMode="spinner" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Wake time"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TimePicker
+                android:id="@+id/picker_wake_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:timePickerMode="spinner" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Duration is calculated automatically from bedtime and wake time"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_sleep_quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_quality_poor"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Poor"
+                    android:textColor="@color/text_primary"
+                    app:chipBackgroundColor="#EAF4EC"
+                    app:chipStrokeColor="#8FBFA4"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_quality_okay"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Okay"
+                    android:textColor="@color/text_primary"
+                    app:chipBackgroundColor="#EAF4EC"
+                    app:chipStrokeColor="#8FBFA4"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_quality_good"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good"
+                    android:textColor="@color/text_primary"
+                    app:chipBackgroundColor="#EAF4EC"
+                    app:chipStrokeColor="#8FBFA4"
+                    app:chipStrokeWidth="1dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/text_sleep_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_save_sleep"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/onboarding_cta_green"
+                android:text="Save sleep"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:cornerRadius="14dp" />
+        </LinearLayout>
+
         <!-- Reset Button -->
         <com.google.android.material.button.MaterialButton
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -782,4 +960,7 @@
             app:cornerRadius="14dp" />
 
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <include layout="@layout/layout_bottom_navigation" />
+</LinearLayout>

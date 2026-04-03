@@ -26,6 +26,7 @@ class DashboardActivity : AppCompatActivity() {
         val carbs: Int,
         val fat: Int,
         val waterGlasses: Int,
+        val sleepHours: Int,
         val mealsLogged: Int,
         val streak: Int
     )
@@ -49,20 +50,26 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.nav_view_plan).setOnClickListener {
-            startActivity(Intent(this, DietPlanActivity::class.java))
+            startActivitySmooth(DietPlanActivity::class.java)
         }
 
         findViewById<LinearLayout>(R.id.nav_track_diet).setOnClickListener {
-            startActivity(Intent(this, DietTrackerActivity::class.java))
+            startActivitySmooth(DietTrackerActivity::class.java)
         }
 
         findViewById<LinearLayout>(R.id.nav_profile).setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivitySmooth(ProfilePageActivity::class.java)
         }
 
         findViewById<FrameLayout>(R.id.nav_quick_actions).setOnClickListener {
             showQuickActions()
         }
+
+        findViewById<LinearLayout>(R.id.nav_home).attachTapFeedback()
+        findViewById<LinearLayout>(R.id.nav_view_plan).attachTapFeedback()
+        findViewById<LinearLayout>(R.id.nav_track_diet).attachTapFeedback()
+        findViewById<LinearLayout>(R.id.nav_profile).attachTapFeedback()
+        findViewById<FrameLayout>(R.id.nav_quick_actions).attachTapFeedback()
     }
 
     private fun showQuickActions() {
@@ -71,9 +78,9 @@ class DashboardActivity : AppCompatActivity() {
             .setTitle("Quick actions")
             .setItems(options) { _, which ->
                 when (which) {
-                    0 -> startActivity(Intent(this, DietTrackerActivity::class.java))
-                    1 -> startActivity(Intent(this, DietPlanActivity::class.java))
-                    2 -> startActivity(Intent(this, ProfileActivity::class.java))
+                    0 -> startActivitySmooth(DietTrackerActivity::class.java)
+                    1 -> startActivitySmooth(DietPlanActivity::class.java)
+                    2 -> startActivitySmooth(ProfilePageActivity::class.java)
                 }
             }
             .show()
@@ -89,8 +96,10 @@ class DashboardActivity : AppCompatActivity() {
         val goals = NutritionGoalCalculator.calculate(profile)
         val today = loadTodayTrackingStats()
         val caloriesRemaining = (goals.caloriesTarget - today.calories).coerceAtLeast(0)
-        val caloriesProgress = macroProgress(today.calories, goals.caloriesTarget)
+        val caloriesProgress = scaledProgress(today.calories, goals.caloriesTarget)
+        val caloriesPercent = percentageValue(today.calories, goals.caloriesTarget)
         val waterProgress = macroProgress(today.waterGlasses, 8)
+        val sleepProgress = macroProgress(today.sleepHours * 10, 80)
         val proteinGap = (goals.proteinGrams - today.protein).coerceAtLeast(0)
         val waterGap = (8 - today.waterGlasses).coerceAtLeast(0)
 
@@ -101,9 +110,10 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.text_calories_consumed).text = today.calories.toString()
         findViewById<TextView>(R.id.text_calories_target).text = goals.caloriesTarget.toString()
         findViewById<TextView>(R.id.text_calories_remaining).text = caloriesRemaining.toString()
-        findViewById<TextView>(R.id.text_calorie_percent).text = String.format(Locale.getDefault(), "%d%% of goal", caloriesProgress)
+        findViewById<TextView>(R.id.text_calorie_percent).text = String.format(Locale.getDefault(), "%.1f%% of goal", caloriesPercent)
         findViewById<TextView>(R.id.text_steps).text = today.streak.toString()
         findViewById<TextView>(R.id.text_steps_label).text = "STREAK"
+        findViewById<TextView>(R.id.text_sleep_value).text = String.format(Locale.getDefault(), "%d h", today.sleepHours)
         findViewById<TextView>(R.id.text_meals_logged_value).text = String.format(Locale.getDefault(), "%d meals", today.mealsLogged)
         findViewById<TextView>(R.id.text_water_status_value).text = String.format(Locale.getDefault(), "%d / 8", today.waterGlasses)
         findViewById<ProgressBar>(R.id.progress_calories_circle).progress = caloriesProgress
@@ -111,6 +121,7 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<ProgressBar>(R.id.progress_macro_carbs).progress = macroProgress(today.carbs, goals.carbsGrams)
         findViewById<ProgressBar>(R.id.progress_macro_protein).progress = macroProgress(today.protein, goals.proteinGrams)
         findViewById<ProgressBar>(R.id.progress_macro_fat).progress = macroProgress(today.fat, goals.fatGrams)
+        findViewById<ProgressBar>(R.id.progress_sleep_circle).progress = sleepProgress
         findViewById<TextView>(R.id.text_calories_goal_value).text = String.format(Locale.getDefault(), "%d kcal", goals.caloriesTarget)
         findViewById<TextView>(R.id.text_macro_carbs_value).text = String.format(Locale.getDefault(), "%d/%dg", today.carbs, goals.carbsGrams)
         findViewById<TextView>(R.id.text_macro_fat_value).text = String.format(Locale.getDefault(), "%d/%dg", today.fat, goals.fatGrams)
@@ -129,9 +140,10 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.text_calories_consumed).text = "0"
         findViewById<TextView>(R.id.text_calories_target).text = "0"
         findViewById<TextView>(R.id.text_calories_remaining).text = "0"
-        findViewById<TextView>(R.id.text_calorie_percent).text = "0% of goal"
+        findViewById<TextView>(R.id.text_calorie_percent).text = "0.0% of goal"
         findViewById<TextView>(R.id.text_steps).text = "0"
         findViewById<TextView>(R.id.text_steps_label).text = "STREAK"
+        findViewById<TextView>(R.id.text_sleep_value).text = "0 h"
         findViewById<TextView>(R.id.text_meals_logged_value).text = "0 meals"
         findViewById<TextView>(R.id.text_water_status_value).text = "0 / 8"
         findViewById<TextView>(R.id.text_macro_protein_value).text = "0/0g"
@@ -142,6 +154,7 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<ProgressBar>(R.id.progress_macro_fat).progress = 0
         findViewById<ProgressBar>(R.id.progress_calories_circle).progress = 0
         findViewById<ProgressBar>(R.id.progress_macro_calories).progress = 0
+        findViewById<ProgressBar>(R.id.progress_sleep_circle).progress = 0
         findViewById<TextView>(R.id.text_calories_goal_value).text = "0 kcal"
         findViewById<TextView>(R.id.text_water_value).text = "0 / 8 glasses"
         findViewById<ProgressBar>(R.id.progress_water).progress = 0
@@ -199,12 +212,30 @@ class DashboardActivity : AppCompatActivity() {
             .toInt()
     }
 
+    private fun scaledProgress(current: Int, goal: Int): Int {
+        if (goal <= 0) return 0
+        return ((current.toFloat() / goal.toFloat()) * 1000f)
+            .coerceIn(0f, 1000f)
+            .toInt()
+    }
+
+    private fun percentageValue(current: Int, goal: Int): Float {
+        if (goal <= 0) return 0f
+        return (current.toFloat() / goal.toFloat()) * 100f
+    }
+
     private fun loadTodayTrackingStats(): DailyTrackingStats {
         val prefs = getSharedPreferences("diet_tracker_prefs", MODE_PRIVATE)
+        val sleepPrefs = getSharedPreferences("sleep_tracker_prefs", MODE_PRIVATE)
         val dateKey = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         val mealsJson = prefs.getString("meals_$dateKey", "[]") ?: "[]"
         val streak = prefs.getInt("streak_count", 0)
-        val waterGlasses = prefs.getInt("water_glasses_$dateKey", 0)
+        val waterGlasses = prefs.getInt("water_$dateKey", prefs.getInt("water_glasses_$dateKey", 0))
+        val sleepHours = when {
+            sleepPrefs.contains("sleep_hours_int_$dateKey") -> sleepPrefs.getInt("sleep_hours_int_$dateKey", 0)
+            sleepPrefs.contains("sleep_hours_$dateKey") -> sleepPrefs.getFloat("sleep_hours_$dateKey", 0f).toInt()
+            else -> 0
+        }
 
         return runCatching {
             val jsonArray = JSONArray(mealsJson)
@@ -228,6 +259,7 @@ class DashboardActivity : AppCompatActivity() {
                 carbs = carbs.toInt(),
                 fat = fat.toInt(),
                 waterGlasses = waterGlasses,
+                sleepHours = sleepHours,
                 mealsLogged = mealsLogged,
                 streak = streak
             )
@@ -238,6 +270,7 @@ class DashboardActivity : AppCompatActivity() {
                 carbs = 0,
                 fat = 0,
                 waterGlasses = waterGlasses,
+                sleepHours = sleepHours,
                 mealsLogged = 0,
                 streak = streak
             )

@@ -34,7 +34,7 @@ class OnboardingSplashActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser != null) {
-            startActivity(Intent(this, DashboardActivity::class.java))
+            startActivitySmooth(DashboardActivity::class.java)
             finish()
         }
     }
@@ -42,7 +42,7 @@ class OnboardingSplashActivity : AppCompatActivity() {
     private fun openAuthEntry() {
         if (navigated) return
         navigated = true
-        startActivity(Intent(this, AuthEntryActivity::class.java))
+        startActivitySmooth(AuthEntryActivity::class.java)
         finish()
     }
 
