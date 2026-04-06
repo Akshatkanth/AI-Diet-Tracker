@@ -3412,6 +3412,10 @@ int id dragRight 0x7f0800d1
 int id dragStart 0x7f0800d2
 int id dragUp 0x7f0800d3
 int id dropdown_menu 0x7f0800d4
+int id dropdown_profile_activity 0x7f08029c
+int id dropdown_profile_body_type 0x7f08029d
+int id dropdown_profile_diet 0x7f08029e
+int id dropdown_profile_goal 0x7f08029f
 int id easeIn 0x7f0800d5
 int id easeInOut 0x7f0800d6
 int id easeOut 0x7f0800d7
@@ -3482,6 +3486,11 @@ int id included 0x7f080117
 int id indeterminate 0x7f080118
 int id info 0x7f080119
 int id input_container 0x7f08011a
+int id input_profile_age 0x7f0802a0
+int id input_profile_height 0x7f0802a1
+int id input_profile_name 0x7f0802a2
+int id input_profile_target_weight 0x7f0802a3
+int id input_profile_weight 0x7f0802a4
 int id invisible 0x7f08011b
 int id inward 0x7f08011c
 int id italic 0x7f08011d
@@ -3492,6 +3501,15 @@ int id labeled 0x7f080121
 int id layout 0x7f080122
 int id layout_empty_state 0x7f080123
 int id layout_meals_container 0x7f080124
+int id layout_profile_activity 0x7f0802a5
+int id layout_profile_age 0x7f0802a6
+int id layout_profile_body_type 0x7f0802a7
+int id layout_profile_diet 0x7f0802a8
+int id layout_profile_goal 0x7f0802a9
+int id layout_profile_height 0x7f0802aa
+int id layout_profile_name 0x7f0802ab
+int id layout_profile_target_weight 0x7f0802ac
+int id layout_profile_weight 0x7f0802ad
 int id layout_quick_add_section 0x7f080125
 int id layout_water_glasses 0x7f080126
 int id left 0x7f080127
@@ -4012,6 +4030,7 @@ int layout design_navigation_menu 0x7f0b0036
 int layout design_navigation_menu_item 0x7f0b0037
 int layout design_text_input_end_icon 0x7f0b0038
 int layout design_text_input_start_icon 0x7f0b0039
+int layout dialog_profile_editor 0x7f0b007c
 int layout ime_base_split_test_activity 0x7f0b003a
 int layout ime_secondary_split_test_activity 0x7f0b003b
 int layout item_food_dropdown 0x7f0b003c

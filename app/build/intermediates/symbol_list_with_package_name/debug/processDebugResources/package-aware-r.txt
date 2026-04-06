@@ -3413,6 +3413,10 @@ id dragRight
 id dragStart
 id dragUp
 id dropdown_menu
+id dropdown_profile_activity
+id dropdown_profile_body_type
+id dropdown_profile_diet
+id dropdown_profile_goal
 id easeIn
 id easeInOut
 id easeOut
@@ -3483,6 +3487,11 @@ id included
 id indeterminate
 id info
 id input_container
+id input_profile_age
+id input_profile_height
+id input_profile_name
+id input_profile_target_weight
+id input_profile_weight
 id invisible
 id inward
 id italic
@@ -3493,6 +3502,15 @@ id labeled
 id layout
 id layout_empty_state
 id layout_meals_container
+id layout_profile_activity
+id layout_profile_age
+id layout_profile_body_type
+id layout_profile_diet
+id layout_profile_goal
+id layout_profile_height
+id layout_profile_name
+id layout_profile_target_weight
+id layout_profile_weight
 id layout_quick_add_section
 id layout_water_glasses
 id left
@@ -4013,6 +4031,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_profile_editor
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_food_dropdown
