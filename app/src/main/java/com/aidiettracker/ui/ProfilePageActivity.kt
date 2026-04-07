@@ -1,35 +1,31 @@
 package com.aidiettracker.ui
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import com.aidiettracker.DietTrackerActivity
 import com.aidiettracker.R
-import com.aidiettracker.data.BmiCalculator
 import com.aidiettracker.data.local.LocalProfileStore
 import com.aidiettracker.data.model.ActivityLevel
 import com.aidiettracker.data.model.BodyType
 import com.aidiettracker.data.model.DietPreference
 import com.aidiettracker.data.model.Goal
-import com.aidiettracker.data.model.UserProfile
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Locale
-import kotlin.math.round
 
 class ProfilePageActivity : AppCompatActivity() {
 
-    private var currentProfile: UserProfile? = null
+    private companion object {
+        const val EXTRA_EDIT_SECTION = "extra_edit_section"
+        const val SECTION_PERSONAL = "personal"
+        const val SECTION_FITNESS = "fitness"
+        const val SECTION_METRICS = "metrics"
+        const val SECTION_TOP = "top"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,20 +43,20 @@ class ProfilePageActivity : AppCompatActivity() {
 
     private fun bindActions() {
         findViewById<View>(R.id.button_edit_profile).setOnClickListener {
-            openProfileEditor()
+            openEditor(SECTION_TOP)
         }
         findViewById<View>(R.id.button_complete_profile).setOnClickListener {
             startActivitySmooth(ProfileActivity::class.java)
         }
 
         findViewById<View>(R.id.button_edit_personal).setOnClickListener {
-            openProfileEditor()
+            openEditor(SECTION_PERSONAL)
         }
         findViewById<View>(R.id.button_edit_fitness).setOnClickListener {
-            openProfileEditor()
+            openEditor(SECTION_FITNESS)
         }
         findViewById<View>(R.id.button_edit_metrics).setOnClickListener {
-            openProfileEditor()
+            openEditor(SECTION_METRICS)
         }
 
         findViewById<View>(R.id.button_edit_profile).attachTapFeedback()
@@ -68,6 +64,14 @@ class ProfilePageActivity : AppCompatActivity() {
         findViewById<View>(R.id.button_edit_personal).attachTapFeedback()
         findViewById<View>(R.id.button_edit_fitness).attachTapFeedback()
         findViewById<View>(R.id.button_edit_metrics).attachTapFeedback()
+    }
+
+    private fun openEditor(section: String) {
+        val intent = android.content.Intent(this, ProfileEditActivity::class.java).apply {
+            putExtra(EXTRA_EDIT_SECTION, section)
+        }
+        startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     private fun bindNavigation() {
@@ -97,7 +101,6 @@ class ProfilePageActivity : AppCompatActivity() {
     private fun bindProfile() {
         val currentUid = FirebaseAuth.getInstance().currentUser?.uid
         val profile = LocalProfileStore.load(this, currentUid)
-        currentProfile = profile
         val completeProfileCta = findViewById<View>(R.id.button_complete_profile)
         val editProfileButton = findViewById<View>(R.id.button_edit_profile)
         val editPersonalButton = findViewById<View>(R.id.button_edit_personal)
@@ -145,124 +148,6 @@ class ProfilePageActivity : AppCompatActivity() {
         setText(
             R.id.text_profile_bmi,
             "${oneDecimal(profile.bmi)} (${profile.bmiCategory.name.lowercase(Locale.getDefault()).replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }})"
-        )
-    }
-
-    private fun openProfileEditor() {
-        val profile = currentProfile ?: LocalProfileStore.load(this, FirebaseAuth.getInstance().currentUser?.uid)
-        if (profile == null) {
-            startActivitySmooth(ProfileActivity::class.java)
-            return
-        }
-
-        val editorView = LayoutInflater.from(this).inflate(R.layout.dialog_profile_editor, null)
-        val nameInput = editorView.findViewById<TextInputEditText>(R.id.input_profile_name)
-        val ageInput = editorView.findViewById<TextInputEditText>(R.id.input_profile_age)
-        val heightInput = editorView.findViewById<TextInputEditText>(R.id.input_profile_height)
-        val weightInput = editorView.findViewById<TextInputEditText>(R.id.input_profile_weight)
-        val targetWeightInput = editorView.findViewById<TextInputEditText>(R.id.input_profile_target_weight)
-        val goalInput = editorView.findViewById<MaterialAutoCompleteTextView>(R.id.dropdown_profile_goal)
-        val activityInput = editorView.findViewById<MaterialAutoCompleteTextView>(R.id.dropdown_profile_activity)
-        val dietInput = editorView.findViewById<MaterialAutoCompleteTextView>(R.id.dropdown_profile_diet)
-        val bodyTypeInput = editorView.findViewById<MaterialAutoCompleteTextView>(R.id.dropdown_profile_body_type)
-
-        nameInput.setText(profile.name)
-        ageInput.setText(profile.age.takeIf { it > 0 }?.toString().orEmpty())
-        heightInput.setText(profile.heightCm.takeIf { it > 0.0 }?.let { oneDecimal(it) }.orEmpty())
-        weightInput.setText(profile.weightKg.takeIf { it > 0.0 }?.let { oneDecimal(it) }.orEmpty())
-        targetWeightInput.setText(profile.targetWeightKg.takeIf { it > 0.0 }?.let { oneDecimal(it) }.orEmpty())
-
-        val goalLabels = listOf("Lose weight", "Maintain weight", "Gain weight")
-        val activityLabels = listOf("Sedentary", "Light", "Moderately active", "Very active")
-        val dietLabels = listOf("Vegetarian", "Non-vegetarian")
-        val bodyTypeLabels = listOf("Ectomorph", "Mesomorph", "Endomorph")
-
-        setupDropdown(goalInput, goalLabels, formatGoal(profile.goal))
-        setupDropdown(activityInput, activityLabels, formatActivity(profile.activityLevel))
-        setupDropdown(dietInput, dietLabels, formatDiet(profile.dietPreference))
-        setupDropdown(bodyTypeInput, bodyTypeLabels, formatBodyType(profile.bodyType))
-
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle("Edit profile")
-            .setView(editorView)
-            .setNegativeButton("Cancel", null)
-            .setPositiveButton("Save", null)
-            .create()
-
-        dialog.setOnShowListener {
-            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
-                val name = nameInput.text?.toString()?.trim().orEmpty()
-                val age = ageInput.text?.toString()?.trim()?.toIntOrNull()
-                val heightCm = heightInput.text?.toString()?.trim()?.toDoubleOrNull()
-                val weightKg = weightInput.text?.toString()?.trim()?.toDoubleOrNull()
-                val targetWeightKg = targetWeightInput.text?.toString()?.trim()?.toDoubleOrNull()
-
-                if (name.isBlank() || age == null || age <= 0 || heightCm == null || heightCm <= 0.0 || weightKg == null || weightKg <= 0.0 || targetWeightKg == null || targetWeightKg <= 0.0) {
-                    Toast.makeText(this, "Please complete all profile fields", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                val updatedProfile = profile.copy(
-                    uid = FirebaseAuth.getInstance().currentUser?.uid.orEmpty(),
-                    name = name,
-                    age = age,
-                    heightCm = heightCm,
-                    weightKg = weightKg,
-                    targetWeightKg = targetWeightKg,
-                    goal = parseGoal(goalInput.text?.toString()),
-                    activityLevel = parseActivity(activityInput.text?.toString()),
-                    dietPreference = parseDiet(dietInput.text?.toString()),
-                    bodyType = parseBodyType(bodyTypeInput.text?.toString())
-                ).withUpdatedMetrics()
-
-                LocalProfileStore.save(this, updatedProfile)
-                currentProfile = updatedProfile
-                bindProfile()
-                findViewById<NestedScrollView>(R.id.profile_page_scroll).smoothScrollTo(0, 0)
-                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-        }
-
-        dialog.show()
-    }
-
-    private fun setupDropdown(field: MaterialAutoCompleteTextView, options: List<String>, selected: String) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, options)
-        field.setAdapter(adapter)
-        field.setText(selected, false)
-    }
-
-    private fun parseGoal(value: String?): Goal = when (value) {
-        "Lose weight" -> Goal.LOSE
-        "Gain weight" -> Goal.GAIN
-        else -> Goal.MAINTAIN
-    }
-
-    private fun parseActivity(value: String?): ActivityLevel = when (value) {
-        "Sedentary" -> ActivityLevel.SEDENTARY
-        "Light" -> ActivityLevel.LIGHT
-        "Very active" -> ActivityLevel.ACTIVE
-        else -> ActivityLevel.MODERATE
-    }
-
-    private fun parseDiet(value: String?): DietPreference = when (value) {
-        "Vegetarian" -> DietPreference.VEG_ONLY
-        else -> DietPreference.NON_VEG
-    }
-
-    private fun parseBodyType(value: String?): BodyType = when (value) {
-        "Ectomorph" -> BodyType.ECTOMORPH
-        "Endomorph" -> BodyType.ENDOMORPH
-        else -> BodyType.MESOMORPH
-    }
-
-    private fun UserProfile.withUpdatedMetrics(): UserProfile {
-        val rawBmi = BmiCalculator.calculate(weightKg = weightKg, heightCm = heightCm)
-        val bmi = round(rawBmi * 10.0) / 10.0
-        return copy(
-            bmi = bmi,
-            bmiCategory = BmiCalculator.categoryFor(bmi)
         )
     }
 

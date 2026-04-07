@@ -345,12 +345,16 @@
                 style="@style/Widget.AIDietTracker.TextInput.Soft"
                 app:hintTextColor="@color/text_secondary">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/et_meal_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Meal name"
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical"
                     android:inputType="textCapWords"
+                    android:completionThreshold="1"
+                    android:dropDownWidth="match_parent"
+                    android:dropDownVerticalOffset="8dp"
+                    android:popupBackground="@drawable/bg_dropdown_popup"
                     android:textColor="@color/text_primary"
                     android:textColorHint="@color/text_secondary" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -374,7 +378,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_quantity"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
                         android:inputType="numberDecimal"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_secondary" />
@@ -389,15 +394,18 @@
                     style="@style/Widget.AIDietTracker.TextInput.Soft"
                     app:hintTextColor="@color/text_secondary">
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/act_quantity_unit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Unit"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
                         android:inputType="none"
                         android:text="g"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
+                        android:dropDownWidth="match_parent"
+                        android:dropDownVerticalOffset="8dp"
+                        android:popupBackground="@drawable/bg_dropdown_popup"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_secondary" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -408,7 +416,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Search an Indian food, enter quantity, and we will auto-calculate macros."
+                android:text="Start typing a meal name to see suggestions."
                 android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 

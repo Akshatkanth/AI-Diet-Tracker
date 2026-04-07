@@ -226,14 +226,6 @@ class DietTrackerActivity : AppCompatActivity() {
         etMealName.setAdapter(foodSuggestionsAdapter)
         etMealName.setDropDownBackgroundResource(R.drawable.bg_dropdown_popup)
         etMealName.threshold = 1
-        etMealName.setOnClickListener {
-            refreshFoodSuggestions(etMealName.text?.toString().orEmpty(), forceShow = true)
-        }
-        etMealName.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                refreshFoodSuggestions(etMealName.text?.toString().orEmpty(), forceShow = true)
-            }
-        }
         etMealName.setOnItemClickListener { _, _, _, _ ->
             tvFoodLookupStatus.text = "Food selected. Enter quantity to calculate macros."
         }
@@ -242,7 +234,8 @@ class DietTrackerActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                refreshFoodSuggestions(s?.toString().orEmpty(), forceShow = etMealName.hasFocus())
+                val query = s?.toString().orEmpty()
+                refreshFoodSuggestions(query, forceShow = query.trim().isNotEmpty())
             }
 
             override fun afterTextChanged(s: Editable?) = Unit
@@ -262,7 +255,7 @@ class DietTrackerActivity : AppCompatActivity() {
         val normalizedQuery = query.trim()
         val vegOnly = currentProfile?.dietPreference == DietPreference.VEG_ONLY
         val suggestions = if (normalizedQuery.isEmpty()) {
-            FoodLookupService.defaultSuggestions()
+            emptyList()
         } else {
             FoodLookupService.searchSuggestions(normalizedQuery)
         }.filter { !vegOnly || FoodLookupService.isVegetarianFoodName(it) }
@@ -272,9 +265,15 @@ class DietTrackerActivity : AppCompatActivity() {
         foodSuggestionsAdapter.notifyDataSetChanged()
 
         if (forceShow && suggestions.isNotEmpty()) {
-            etMealName.post { etMealName.showDropDown() }
+            etMealName.post {
+                etMealName.requestFocus()
+                etMealName.showDropDown()
+            }
         } else if (suggestions.isEmpty()) {
             etMealName.dismissDropDown()
+            if (normalizedQuery.isEmpty()) {
+                tvFoodLookupStatus.text = "Start typing a meal name to see suggestions."
+            }
         }
     }
 
@@ -322,6 +321,7 @@ class DietTrackerActivity : AppCompatActivity() {
             val target = findViewById<View>(R.id.layout_quick_add_section)
             scrollView.smoothScrollTo(0, target.top)
             etMealName.requestFocus()
+            refreshFoodSuggestions(etMealName.text?.toString().orEmpty(), forceShow = false)
         }
     }
 

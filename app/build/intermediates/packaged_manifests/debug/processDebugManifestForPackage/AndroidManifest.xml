@@ -43,6 +43,9 @@
             android:name="com.aidiettracker.ui.ProfilePageActivity"
             android:exported="false" />
         <activity
+            android:name="com.aidiettracker.ui.ProfileEditActivity"
+            android:exported="false" />
+        <activity
             android:name="com.aidiettracker.ui.ProfileActivity"
             android:exported="false" />
         <activity

@@ -14,5 +14,5 @@ public final class BuildConfig {
   // Field from default config.
   public static final String NIM_BASE_URL = "https://integrate.api.nvidia.com/";
   // Field from default config.
-  public static final String NIM_MODEL = "meta/llama-3.1-70b-instruct";
+  public static final String NIM_MODEL = "meta/llama-3.1-8b-instruct";
 }

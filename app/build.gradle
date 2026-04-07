@@ -29,7 +29,7 @@ android {
 
         buildConfigField "String", "NIM_API_KEY", "\"${nimApiKey}\""
         buildConfigField "String", "NIM_BASE_URL", "\"https://integrate.api.nvidia.com/\""
-        buildConfigField "String", "NIM_MODEL", "\"meta/llama-3.1-70b-instruct\""
+        buildConfigField "String", "NIM_MODEL", "\"meta/llama-3.1-8b-instruct\""
     }
 
     buildTypes {
