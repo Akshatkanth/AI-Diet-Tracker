@@ -61,7 +61,8 @@
                     android:id="@+id/text_chat_shortcut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_dashboard_header_chip"
+                    android:elevation="2dp"
+                    android:minHeight="40dp"
                     android:paddingStart="14dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="14dp"
@@ -71,10 +72,13 @@
                     android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    app:backgroundTint="@android:color/transparent"
+                    app:backgroundTint="#DDF4FCE8"
+                    app:cornerRadius="999dp"
                     app:icon="@drawable/ic_chat"
                     app:iconPadding="6dp"
                     app:iconTint="@color/text_primary"
+                    android:insetBottom="0dp"
+                    android:insetTop="0dp"
                     app:rippleColor="#22000000" />
             </LinearLayout>
 
@@ -363,7 +367,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/bg_dashboard_glass_card"
+                android:background="@drawable/bg_dashboard_glass_card_debug"
                 android:orientation="vertical"
                 android:padding="18dp">
 
@@ -648,7 +652,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/bg_dashboard_glass_card"
+                android:background="@drawable/bg_dashboard_glass_card_debug"
                 android:orientation="vertical"
                 android:padding="18dp">
 
@@ -764,7 +768,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/bg_dashboard_glass_card"
+                android:background="@drawable/bg_dashboard_glass_card_debug"
                 android:orientation="vertical"
                 android:padding="18dp">
 

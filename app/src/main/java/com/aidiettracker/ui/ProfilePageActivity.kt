@@ -1,5 +1,6 @@
 package com.aidiettracker.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -48,6 +49,15 @@ class ProfilePageActivity : AppCompatActivity() {
         findViewById<View>(R.id.button_complete_profile).setOnClickListener {
             startActivitySmooth(ProfileActivity::class.java)
         }
+        findViewById<View>(R.id.button_logout).setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, AuthEntryActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            }
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            finish()
+        }
 
         findViewById<View>(R.id.button_edit_personal).setOnClickListener {
             openEditor(SECTION_PERSONAL)
@@ -61,6 +71,7 @@ class ProfilePageActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.button_edit_profile).attachTapFeedback()
         findViewById<View>(R.id.button_complete_profile).attachTapFeedback()
+        findViewById<View>(R.id.button_logout).attachTapFeedback()
         findViewById<View>(R.id.button_edit_personal).attachTapFeedback()
         findViewById<View>(R.id.button_edit_fitness).attachTapFeedback()
         findViewById<View>(R.id.button_edit_metrics).attachTapFeedback()

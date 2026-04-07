@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_progress_bar_white.xml.flat",
-        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\progress_bar_white.xml"
-    },
-    {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_dashboard_hero.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_dashboard_hero.xml"
+    },
+    {
+        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_progress_bar_white.xml.flat",
+        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\progress_bar_white.xml"
     },
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_ic_track_diet.xml.flat",
@@ -36,16 +36,16 @@
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_chat_input.xml"
     },
     {
-        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_progress_bar_bg_white.xml.flat",
-        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\progress_bar_bg_white.xml"
+        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\layout_activity_auth_entry.xml.flat",
+        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\layout\\activity_auth_entry.xml"
     },
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_orange_banner.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_orange_banner.xml"
     },
     {
-        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\layout_activity_auth_entry.xml.flat",
-        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\layout\\activity_auth_entry.xml"
+        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_progress_bar_bg_white.xml.flat",
+        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\progress_bar_bg_white.xml"
     },
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_dot_orange.xml.flat",
@@ -60,12 +60,12 @@
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\layout\\activity_diet_plan.xml"
     },
     {
-        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\layout\\activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_glass_card.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_glass_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\layout\\activity_login.xml"
     },
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_ic_chat_send.xml.flat",
@@ -74,6 +74,10 @@
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_chip_selector.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\chip_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_dashboard_glass_card_debug.xml.flat",
+        "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_dashboard_glass_card_debug.xml"
     },
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_profile_option_card.xml.flat",
@@ -200,10 +204,6 @@
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_profile_progress_inactive.xml"
     },
     {
-        "merged": "com.aidiettracker.app-debug-36:/layout_activity_dashboard.xml.flat",
-        "source": "com.aidiettracker.app-main-38:/layout/activity_dashboard.xml"
-    },
-    {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_bg_dashboard_bottom_bar.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\bg_dashboard_bottom_bar.xml"
     },
@@ -278,5 +278,9 @@
     {
         "merged": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-debug-36:\\drawable_progress_bar_bg.xml.flat",
         "source": "C:\\Users\\Akshat\\.gradle\\daemon\\9.3.1\\com.aidiettracker.app-main-38:\\drawable\\progress_bar_bg.xml"
+    },
+    {
+        "merged": "com.aidiettracker.app-debug-36:/layout_activity_profile_page.xml.flat",
+        "source": "com.aidiettracker.app-main-38:/layout/activity_profile_page.xml"
     }
 ]

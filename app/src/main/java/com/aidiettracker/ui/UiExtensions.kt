@@ -31,11 +31,19 @@ fun Activity.routeAfterAuth() {
     if (hasProfile) {
         startActivitySmooth(DashboardActivity::class.java)
     } else {
-        val intent = Intent(this, ProfileActivity::class.java).apply {
-            putExtra(ProfileActivity.EXTRA_FORCE_ONBOARDING, true)
+        // Fallback for legacy/local data where uid linkage may be missing or stale.
+        val legacyProfile = LocalProfileStore.load(this)
+        if (legacyProfile != null) {
+            val migratedProfile = legacyProfile.copy(uid = currentUser.uid)
+            LocalProfileStore.save(this, migratedProfile)
+            startActivitySmooth(DashboardActivity::class.java)
+        } else {
+            val intent = Intent(this, ProfileActivity::class.java).apply {
+                putExtra(ProfileActivity.EXTRA_FORCE_ONBOARDING, true)
+            }
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
-        startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
     finish()
 }
